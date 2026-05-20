@@ -27,7 +27,8 @@ llm = ChatOpenAI(
     model="gpt-4o", 
     temperature=0, 
     api_key=os.getenv("OPENROUTER_API_KEY"), 
-    base_url="https://openrouter.ai/api/v1"
+    base_url="https://openrouter.ai/api/v1",
+    max_tokens=1000
 )
 
 
@@ -66,7 +67,7 @@ def main():
                     collection_name="data_collection",
                 )
                 retriever = vector_store.as_retriever(
-                    kwargs={"k": 5},
+                    kwargs={"k": 3},
                 )
 
                 st.session_state.retriever = retriever
